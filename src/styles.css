@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {overflow: hidden !important}
+
+*::-webkit-scrollbar {
+	width: 8px;
+	background-color: transparent;
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #e1e1e1;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #eee;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(left, #22ADD4, #1E98BA);
+}
+
+.has-content-between {
+	display: flex !important;
+	justify-content: space-between;
+}
+
+.menu-list li:hover {
+    background-color: #f5f5f5;
+    color: #363636;
+}
+
+.is-text-bold { font-weight: 600; }
+
+.has-text-nowrap { white-space: nowrap; }
+
+.has-overflow-hidden { overflow: hidden; }
+
+.no-resize {
+	resize: none;
+}
