@@ -1,0 +1,44 @@
+<aside class="menu has-background-white">
+	<div class="section sidebar-body is-fluid">
+		<p class="menu-label">General</p>
+		<ul class="menu-list">
+			<li><a>Dashboard</a></li>
+			<li><a>Customers</a></li>
+		</ul>
+
+		<p class="menu-label">Shopping Lists</p>
+
+		<div class="notification has-text-grey is-marginless" [hidden]="lists.length || isAddingList">
+			<!-- <button class="delete"></button> -->
+			<p class="is-size-7 has-text-centered">No lists added yet</p>
+		</div>
+		<!-- <article class="message has-background-white" *ngIf="!lists.length && !isAddingList" (click)="showAddListForm()">
+			<div class="message-body is-empty has-text-centered has-text-grey is-size-7">
+				<p class="is-size-7">No lists added yet</p>
+				<p class="has-text-link" style="margin-top: .3em;">Click to add</p>
+			</div>
+		</article> -->
+
+		<sidebar-list [lists]="lists" [hidden]="!lists.length"></sidebar-list>
+
+		<ul class="menu-list menu-list-action" [hidden]="isAddingList">
+			<li>
+				<a class="has-text-info is-size-7" (click)="showAddListForm()">
+					<i class="icon ion-md-add"></i>
+					<span>Add list</span>
+				</a>
+			</li>
+		</ul>
+
+		<sidebar-list-form *ngIf="isAddingList" (submit)="addList($event)" (clear)="onClear()"></sidebar-list-form>
+	</div>
+	
+	<ul class="menu-list is-bottom" style="border-top: thin solid lightgrey;">
+		<li class="has-text-centered is-marginless expansion">
+			<a role="button" class="is-pulled-right expansion-button" aria-label="menu" aria-expanded="false" (click)="toggleExpand()">
+				<i class="icon is-size-4 has-text-grey" [ngClass]="{'ion-ios-arrow-back': isExpanded, 'ion-ios-arrow-forward': !isExpanded}"></i>
+			</a>
+		</li>
+	</ul>
+</aside>
+

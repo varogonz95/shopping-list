@@ -1,0 +1,7 @@
+/* :host .menu-list li > .icon {margin-right: 10px;}
+:host .menu-list li > .icon:not(.is-visible) {display: none; transition: all .3s;}
+:host .menu-list li:hover .icon {display: inline-flex; transition: all .3s;} */
+:host .menu-list li a > span { vertical-align: top; }
+:host .menu-list li > a.is-main-list { font-weight: 600; }
+/* :host .menu-list li > a:not(.is-main-list) .icon { opacity: 0 }
+:host .menu-list li > a:not(.is-main-list):hover .icon { opacity: 1 } */

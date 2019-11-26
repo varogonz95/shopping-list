@@ -1,0 +1,32 @@
+<ul class="menu-list">
+	<li class="has-text-nowrap has-overflow-hidden" *ngFor="let list of lists; index as index">
+		<a [ngClass]="{'has-text-info is-main-list': list.isMain}" *ngIf="!list.isEditable">
+			<span class="dropdown is-hoverable">
+				<i class="dropdown-trigger icon ion-md-basket is-size-4" (click)="toggleMain(list)"
+					[ngClass]="{'has-text-info': list.isMain, 'has-text-grey-lighter': !list.isMain}"
+					style="margin-right: 1em;">
+				</i>
+				<div class="dropdown-menu" id="dropdown-menu4" role="menu">
+					<div class="dropdown-content">
+						<div class="dropdown-item">
+							<p>You can insert <strong>any type of content</strong> within the dropdown menu.</p>
+						</div>
+					</div>
+				</div>
+			</span>
+			<span (click)="toggleEditable(list)">{{list.name}}</span>
+			<!-- <i class="icon ion-ios-trash has-text-danger is-size-4" 
+			   (click)="delete(index)" 
+				style="margin-left: 1em;">
+			</i> -->
+		</a>
+		<!-- <a class="navbar-burger">
+			<span></span>
+			<span></span>
+			<span></span>
+		</a> -->
+
+		<sidebar-list-form [model]="list.name" (submit)="saveChanges(list, $event)" (clear)="onClear()"
+			*ngIf="list.isEditable"></sidebar-list-form>
+	</li>
+</ul>

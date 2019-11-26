@@ -4,7 +4,7 @@ import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PagesModule } from './pages/pages.module';
+import { SidebarModule } from './sidebar/sidebar.module';
 
 @NgModule({
 	declarations: [
@@ -15,7 +15,7 @@ import { PagesModule } from './pages/pages.module';
 		BrowserModule,
 		AppRoutingModule,
 		FormsModule,
-		PagesModule,
+		SidebarModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
