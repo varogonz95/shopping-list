@@ -1,0 +1,9 @@
+<section class="box is-relative is-borderless is-fullwidth" style="bottom: 35%;height: 250px;width: 300px;">
+	<h3 class="is-text-bold is-size-5">{{ list.name }}</h3>
+	<p class="has-text-grey-light">
+		<ng-template ngFor let-product [ngForOf]="list.deferredProducts | async | max:MAX_PRODUCTS" let-last="last" let-index="index">
+			<span>{{(product.data().name + (!last? ', ' : '')) | titlecase }}</span>
+			<span *ngIf="last && (list.deferredProducts | async)?.length > MAX_PRODUCTS">, +{{(list.deferredProducts | async)?.length - MAX_PRODUCTS}} more</span>
+		</ng-template>
+	</p>
+</section>

@@ -4,17 +4,23 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './sidebar.component';
 import { SidebarListComponent } from './sidebar-list/sidebar-list.component';
-import { SidebarListFormComponent } from './sidebar-list-form/sidebar-list-form.component';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { RouterModule } from '@angular/router';
 
 const components = [
 	SidebarComponent,
 	SidebarListComponent,
-	SidebarListFormComponent
+	// SidebarListFormComponent
 ] 
 
 @NgModule({
 	declarations: components,
-	imports: [CommonModule, FormsModule],
+	imports: [
+		AngularFirestoreModule,
+		CommonModule, 
+		FormsModule,
+		RouterModule
+	],
 	exports: [SidebarComponent],
 })
 export class SidebarModule { }

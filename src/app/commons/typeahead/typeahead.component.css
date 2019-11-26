@@ -1,0 +1,11 @@
+:host .card .card-content {
+	padding-top: .7rem;
+	padding-bottom: .7rem;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+:host .card .card-content a {
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+}

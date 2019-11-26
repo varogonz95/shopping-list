@@ -1,9 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="columns is-gapless">
-	<sidebar></sidebar>
-	<div class="column page-container">
-		<div class="container is-fluid">
-			<router-outlet></router-outlet>
-		</div>
+	<sidebar *ngIf="user | async"></sidebar>
+	<div class="column has-background-white-bis" style="max-height: 100vh; height: 100vh; overflow: auto;">
+		<navbar></navbar>
+		<!-- <progress-bar max="100" value="50" indeterminate="true" size="small" type="success"></progress-bar> -->
+		<router-outlet></router-outlet>
 	</div>
 </div>

@@ -1,0 +1,36 @@
+<section class="hero is-info is-medium">
+	<div class="hero-body">
+		<div class="container">
+			<h1 class="title is-size-4">My Shopping Lists</h1>
+		</div>
+	</div>
+</section>
+
+<section class="section container is-widescreen is-fullhd" style="padding-top: 0;padding-bottom: 0;">
+	<div class="columns is-multiline is-mobile">
+		<add-shopping-list-box to="/shopping-lists/new" class="column is-narrow"></add-shopping-list-box>
+
+		<!-- <ng-template ngFor let-doc [ngForOf]="documents | async">
+		</ng-template> -->
+		<shopping-list-box class="column is-narrow" *ngFor="let doc of documents | async" [list]="doc"></shopping-list-box>
+	</div>
+</section>
+
+<!--- SKELETON CONTENT LOADER -->
+<!-- 
+<h3 class="is-text-bold is-size-5" style="background: #f6f6f6; border-radius: 10px; height: 16px; margin-bottom: 1em;"></h3>
+<div>
+	<span style="width: 16%;display: inline-block;background: #f6f6f6;height: 16px;border-radius: 10px;"></span> 
+	<span style="width: 82%;display: inline-block;background: #f6f6f6;height: 16px;border-radius: 10px;"></span>
+	<span style="width: 72%;display: inline-block;background: #f6f6f6;height: 16px;border-radius: 10px;"></span> 
+	<span style="width: 25%;display: inline-block;background: #f6f6f6;height: 16px;border-radius: 10px;"></span> 
+	<span style="width: 50%;display: inline-block;background: #f6f6f6;height: 16px;border-radius: 10px;"></span>
+	<span style="width: 47%;display: inline-block;background: #f6f6f6;height: 16px;border-radius: 10px;"></span>
+	<span style="width: 16%;display: inline-block;background: #f6f6f6;height: 16px;border-radius: 10px;"></span> 
+	<span style="width: 82%;display: inline-block;background: #f6f6f6;height: 16px;border-radius: 10px;"></span>
+	<span style="width: 72%;display: inline-block;background: #f6f6f6;height: 16px;border-radius: 10px;"></span> 
+	<span style="width: 25%;display: inline-block;background: #f6f6f6;height: 16px;border-radius: 10px;"></span> 
+	<span style="width: 50%;display: inline-block;background: #f6f6f6;height: 16px;border-radius: 10px;"></span>
+	<span style="width: 47%;display: inline-block;background: #f6f6f6;height: 16px;border-radius: 10px;"></span>
+</div> 
+-->

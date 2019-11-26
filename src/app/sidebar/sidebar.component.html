@@ -1,14 +1,21 @@
 <aside class="menu has-background-white">
+	<ul class="menu-list">
+		<li class="has-text-right">
+			<a role="button" aria-label="menu" aria-expanded="false" (click)="toggleExpand()">
+				<i class="icon is-size-4 has-text-grey" [ngClass]="{'ion-ios-arrow-back': isExpanded, 'ion-md-menu': !isExpanded}"></i>
+			</a>
+		</li>
+	</ul>
+
 	<div class="section sidebar-body is-fluid">
 		<p class="menu-label">General</p>
 		<ul class="menu-list">
-			<li><a>Dashboard</a></li>
-			<li><a>Customers</a></li>
+			<li><a routerLink="/home">Home</a></li>
 		</ul>
 
 		<p class="menu-label">Shopping Lists</p>
 
-		<div class="notification has-text-grey is-marginless" [hidden]="lists.length || isAddingList">
+		<div class="notification has-text-grey is-marginless" [hidden]="(lists | async)?.length">
 			<!-- <button class="delete"></button> -->
 			<p class="is-size-7 has-text-centered">No lists added yet</p>
 		</div>
@@ -19,8 +26,9 @@
 			</div>
 		</article> -->
 
-		<sidebar-list [lists]="lists" [hidden]="!lists.length"></sidebar-list>
+		<sidebar-list [lists]="lists" [hidden]="!(lists | async)?.length"></sidebar-list>
 
+		<!-- 
 		<ul class="menu-list menu-list-action" [hidden]="isAddingList">
 			<li>
 				<a class="has-text-info is-size-7" (click)="showAddListForm()">
@@ -31,14 +39,16 @@
 		</ul>
 
 		<sidebar-list-form *ngIf="isAddingList" (submit)="addList($event)" (clear)="onClear()"></sidebar-list-form>
+		 -->
 	</div>
-	
-	<ul class="menu-list is-bottom" style="border-top: thin solid lightgrey;">
-		<li class="has-text-centered is-marginless expansion">
-			<a role="button" class="is-pulled-right expansion-button" aria-label="menu" aria-expanded="false" (click)="toggleExpand()">
-				<i class="icon is-size-4 has-text-grey" [ngClass]="{'ion-ios-arrow-back': isExpanded, 'ion-ios-arrow-forward': !isExpanded}"></i>
+
+	<ul class="menu-list">
+		<li class="has-text-right">
+			<a role="button" aria-label="menu" aria-expanded="false" (click)="signOut()">
+				<i class="icon ion-md-log-out is-size-4 has-text-grey"></i>
+				<span style="padding-left: .7rem;">Sign out</span>
 			</a>
 		</li>
-	</ul>
+	</ul>	
 </aside>
 

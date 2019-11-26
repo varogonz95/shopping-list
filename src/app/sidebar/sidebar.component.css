@@ -21,7 +21,12 @@
 
 :host .menu-list-action a:hover { background-color: white; }
 
-:host .sidebar-body { overflow-y: auto; height: calc(100vh - 98px); padding-top: 1rem}
+:host .sidebar-body { 
+	overflow-y: auto; 
+	height: calc(100vh - 82px); 
+	padding-top: 1rem;
+	padding-bottom: 0
+}
 
 :host.condensed .container { overflow: hidden; }
 :host.condensed * { white-space: nowrap; }

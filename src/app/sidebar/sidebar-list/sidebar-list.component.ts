@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ShoppingList } from '../../shared/ShoppingList';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Observable } from 'rxjs';
 
-interface ShoppingListEditable extends ShoppingList {
-	isEditable?: boolean
+interface ListViewModel {
+	id: string
+	name: string
 }
 
 @Component({
@@ -13,37 +14,18 @@ interface ShoppingListEditable extends ShoppingList {
 export class SidebarListComponent implements OnInit {
 
 	@Input()
-	lists: ShoppingListEditable[]
+	public lists: Observable<any[]>
 
 	constructor() { }
 
-	ngOnInit() {
-		this.lists.map(list => list.isEditable = false)
-	}
-
-	public toggleMain(list: ShoppingList) {
-		if (this.lists.length > 1) {
-			this.lists.map(list => list.isMain = false)
-			list.isMain = true
-		}
-	}
-
-	public toggleEditable(list: ShoppingListEditable) {
-		this.lists.map(list => list.isEditable = false)
-		list.isEditable = true
-	}
-
-	public saveChanges(list: ShoppingListEditable, name: string) {
-		list.name = name
-		list.isEditable = false
-	}
+	ngOnInit() { }
 
 	public delete(index: number/* , list: ShoppingList */) {
-		if (confirm(`Do you really want to delete this list (${this.lists[index].name})?`))
-		this.lists.splice(index, 1)
+		// if (confirm(`Do you really want to delete this list (${this.lists[index].name})?`))
+		// this.lists.splice(index, 1)
 	}
 
 	public onClear() {
-		this.lists.map(list => list.isEditable = false)
+		// this.lists.map(list => list.isEditable = false)
 	}
 }

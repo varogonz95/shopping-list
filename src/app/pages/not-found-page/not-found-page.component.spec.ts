@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SidebarListFormComponent } from './sidebar-list-form.component';
+import { NotFoundPage } from './not-found-page.component';
 
-describe('SidebarListFormComponent', () => {
-  let component: SidebarListFormComponent;
-  let fixture: ComponentFixture<SidebarListFormComponent>;
+describe('NotFoundPageComponent', () => {
+  let component: NotFoundPage;
+  let fixture: ComponentFixture<NotFoundPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidebarListFormComponent ]
+      declarations: [ NotFoundPage ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SidebarListFormComponent);
+    fixture = TestBed.createComponent(NotFoundPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,7 +1,11 @@
 /* :host .menu-list li > .icon {margin-right: 10px;}
 :host .menu-list li > .icon:not(.is-visible) {display: none; transition: all .3s;}
 :host .menu-list li:hover .icon {display: inline-flex; transition: all .3s;} */
-:host .menu-list li a > span { vertical-align: top; }
-:host .menu-list li > a.is-main-list { font-weight: 600; }
+/* :host .menu-list li > a { text-indent: 1em; } */
+:host .menu-list li { text-indent: 1.5em; }
+/* :host .menu-list a { border-left: thin solid #ddd; } */
+:host .menu-list .icon { margin-right: 1em; height: 24; width: 24; }
+:host .menu-list .is-active-list { font-weight: 600; border-left: thick solid; margin-left: -4px; background-color: #f5f5f5;}
+:host .menu-list li {overflow: visible;}
 /* :host .menu-list li > a:not(.is-main-list) .icon { opacity: 0 }
 :host .menu-list li > a:not(.is-main-list):hover .icon { opacity: 1 } */

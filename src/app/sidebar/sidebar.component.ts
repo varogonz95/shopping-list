@@ -1,5 +1,12 @@
+import { Observable, of } from 'rxjs';
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { ShoppingList } from '../shared/ShoppingList';
+
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore, AngularFirestoreCollection, DocumentChangeAction } from '@angular/fire/firestore';
+
+import { List } from '../shared/List';
+import { Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
 	selector: 'sidebar',
@@ -8,35 +15,54 @@ import { ShoppingList } from '../shared/ShoppingList';
 })
 export class SidebarComponent implements OnInit {
 
-	public isAddingList = false
+	public listNameModel = ''
 	public isExpanded = true
-	public lists: ShoppingList[] = []
-	public listNameModel: string = ''
+	public isAddingList = false
+	public lists = new Observable<any[]>()
 
 	private nativeElement: HTMLElement
+	private shoppingListCollection: AngularFirestoreCollection<List>
 
-	constructor(element: ElementRef) {
-		this.nativeElement = element.nativeElement
+	constructor(
+		private element: ElementRef,
+		private router: Router,
+		private store: AngularFirestore,
+		private authService: AngularFireAuth) {
+		this.nativeElement = this.element.nativeElement
+		/* Firebase */
+		this.shoppingListCollection = this.store.collection('shopping-lists')
 	}
-
+	
 	ngOnInit() {
+		if (this.authService.auth.currentUser) {
+			this.lists = this.shoppingListCollection.snapshotChanges()
+							.pipe(switchMap(docs => 
+								of(docs.map(doc => {
+									const data = doc.payload.doc.data()
+									return { id: doc.payload.doc.id, name: data.name }
+								}))
+							))
+		}
+
 		this.nativeElement.style.transition = 'width .3s'
 		this.nativeElement.classList.add('column', 'is-one-fifth')
 	}
-
-	public addList(name: string) {
-		if (name.length)
-		this.lists.push({name, isMain: this.lists.length === 0})
+	
+	/* public async addList(name: string) {
+		if (name.length) {
+			try {
+				await this.shoppingListCollection.add({name, isMain: false, creationTimestamp: Date.now()})
+			} 
+			catch (error) {
+				console.error(error)	
+			}
+		}
 		this.isAddingList = false
-	}
+	} */
 
-	public onClear() {
-		this.isAddingList = false
-	}
-
-	public showAddListForm() {
-		// this.lists.push({name: '', isMain: false})
-		this.isAddingList = true
+	public signOut() {
+		this.authService.auth.signOut()
+			.then(() => this.router.navigate(['signIn']))
 	}
 
 	public toggleExpand() {

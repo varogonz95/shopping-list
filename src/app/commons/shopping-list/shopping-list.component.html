@@ -1,0 +1,110 @@
+<div class="box column is-6" style="margin: auto; padding: 1rem 2rem">
+	<form class="is-relative" #listForm="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
+		<input type="hidden" name="id" [(ngModel)]="list.id">
+
+		<button class="is-absolute" style="top: 0; right: 0;">
+			<i class="icon ion ion-ios-more is-size-4"></i>
+		</button>
+
+		<div class="field">
+			<div class="control has-background-white is-radiusless">
+				<input class="input is-shadowless is-borderless is-large" name="listName" [(ngModel)]="list.name"
+					type="text" placeholder="Shopping list name">
+			</div>
+		</div>
+
+		<!-- <div class="content has-background-white-bis" style="margin-left: -2rem; margin-right: -2rem; height: 50vh;">
+					<span>Lorem ipsum dolor sit amet consectetur.</span>
+				</div> -->
+
+		<!-- <div class="menu" style="margin-top: 2rem; margin-bottom: 3rem">
+					<div class="level">
+						<div class="level-left">
+							<p class="menu-label">Products</p>
+						</div>
+						<div class="level-right">
+							<b class="level-item">Price</b>
+							<b class="level-item">Quantity</b>
+						</div>
+					</div>
+
+					<ol class="menu-list" style="margin-left: 1.5rem">
+						<li>
+							<a class="level is-flex">
+								<div class="level-left">
+									<span class="level-item">Eggs</span>
+								</div>
+								<div class="level-right">
+									<span class="level-item">2,000</span>
+									<span class="level-item">2.00</span>
+								</div>
+							</a>
+						</li>
+						<li><a>Milk</a></li>
+					</ol>
+				</div> -->
+
+		<table class="table is-hoverable is-fullwidth">
+			<thead>
+				<tr>
+					<!-- <th class="is-borderless"></th> -->
+					<th class="is-borderless has-text-left is-thin-header" colspan="2">Products</th>
+					<th class="is-borderless has-text-left">Price</th>
+					<th class="is-borderless has-text-left">Quantity</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td class="is-borderless" width="5">
+						<i #productRadio class="icon ion ion-ios-radio-button-off has-text-primary is-size-4"
+							(mouseover)="onProductItemOver(productRadio)" (mouseout)="onProductItemOut(productRadio)"
+							(click)="onProductItemClick(productRadio)"></i>
+					</td>
+					<!-- <td class="is-borderless" width="5">1.</td> -->
+					<td class="is-borderless">Eggs</td>
+					<td class="is-borderless has-text-right" width="10">2,000</td>
+					<td class="is-borderless has-text-right" width="10">2.00</td>
+				</tr>
+				<tr>
+					<td class="is-borderless" width="5">
+						<i class="icon ion ion-ios-checkmark-circle-outline has-text-primary is-size-4"></i>
+					</td>
+					<!-- <td class="is-borderless" width="5">2.</td> -->
+					<td class="is-borderless">Milk</td>
+					<td class="is-borderless has-text-right" width="10">1,000</td>
+					<td class="is-borderless has-text-right" width="10">1.50</td>
+				</tr>
+				<tr>
+					<td class="is-borderless" width="5">
+						<i class="icon ion ion-ios-radio-button-off has-text-primary is-size-4"></i>
+					</td>
+					<!-- <td class="is-borderless" width="5">3.</td> -->
+					<td class="is-borderless">Potatoes</td>
+					<td class="is-borderless has-text-right" width="10">500</td>
+					<td class="is-borderless has-text-right" width="10">1.00</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- <div class="field" *ngFor="let products of list.products; index as index">
+					<div class="control has-background-white is-radiusless">
+						<input class="input is-shadowless is-borderless" name="productName[index]" type="text" placeholder="Product name">
+					</div>
+				</div> 
+				<div class="field is-grouped is-borderless">
+					<div class="control">
+						<button class="button is-link is-success">Done!</button>
+					</div>
+				</div> -->
+
+		<div class="field is-bottom">
+			<div class="control has-background-white is-radiusless has-icons-left">
+				<input class="input is-shadowless is-borderless" name="productName"
+					placeholder="Write the name of a product">
+				<i class="icon is-left has-text-link is-size-4 ion ion-md-add"
+					style="width: 1.5rem; height: 2rem; padding-left: .7em; padding-right: .7em;"></i>
+			</div>
+		</div>
+	</form>
+</div>

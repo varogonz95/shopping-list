@@ -1,0 +1,4 @@
+<input #ref [id]="name" class="switch-input" type="checkbox" [name]="name" [(ngModel)]="value" (ngModelChange)="onModelChanges()">
+<label [for]="name" class="switch-label-text switch-label-start" *ngIf="label?.trim().length" [ngClass]="{'switch-label-hidden': position !== 'start'}" [innerHtml]="label">{{label}}</label>
+<label [for]="name" class="switch-label"></label>
+<label [for]="name" class="switch-label-text switch-label-end" *ngIf="label?.trim().length" [ngClass]="{'switch-label-hidden': position !== 'end'}" [innerHtml]="label">{{label}}</label>

@@ -1,0 +1,43 @@
+:host form {
+	height: 100%;
+}
+
+:host table {
+	margin-top: 1em;
+}
+
+:host table td {
+	border-color: #eee;
+	cursor: pointer;
+}
+
+:host #listNamePlaceholder  a:hover {
+	background-color: #fafafa;
+}
+
+:host .is-back-button {
+	min-height: 48px;
+	min-width: 48px;
+	box-shadow: 0 0.5em 1em 0.125em rgba(10,10,10,.1), 
+				0 0 0 1px rgba(10,10,10,.02);
+	padding: 24px 0;
+}
+:host .field {
+	border-bottom: thin solid lightgrey;
+}
+
+:host input.input {
+	border: none;
+	/* height: 34px; */
+}
+:host input.input + button{
+	cursor: pointer;
+	outline: 0;
+}
+:host .is-action-icon {
+	width: 1.5rem; 
+	height: 2rem; 
+	padding-left: .7em; 
+	padding-right: .7em;
+	cursor: pointer;
+}

@@ -1,0 +1,11 @@
+<div class="card" [hidden]="!items.length">
+	<div class="card-content">
+		<div class="menu">
+			<ul class="menu-list">
+				<li *ngFor="let item of items">
+					<a (click)="onSelectedItem(item)">{{item[textField]}}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

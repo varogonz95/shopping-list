@@ -1,0 +1,171 @@
+<section class="section container">
+	<!-- <div class="columns">
+		<div class="column">
+			<a class="button is-rounded is-borderless is-back-button" title="Go back" (click)="back()">
+				<i class="icon ion-md-arrow-round-back is-marginless is-size-4"></i>
+			</a>
+		</div>
+	</div> -->
+
+	<div class="columns is-multiline">
+		<!-- <div class="column is-6 is-offset-3 has-text-left">
+			<switch-toggle name="switchToggle" label="Set as main list" position="start" [(ngModel)]="list.isMain"></switch-toggle>
+		</div> -->
+
+		<div class="box column is-6-desktop is-8-tablet is-narrow" style="margin: auto; padding: 1rem 2rem; min-height: 550px; height: 550px;">
+			<form class="is-relative" #listForm #listNgForm="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
+				<!-- <switch-toggle class="is-pulled-right" name="switchToggle" label="Primary list" position="start" [(ngModel)]="list.isMain"></switch-toggle> -->
+				<div class="field" *ngIf="list.editable">
+					<div class="control has-background-white has-icons-right is-radiusless is-flex">
+						<input id="listName" #listName class="input is-shadowless is-borderless is-large" name="listNameModel" [(ngModel)]="list.name" (keyup)="onEscKey($event)" type="text" placeholder="My list name" autofocus required>
+						<!-- <button class="icon ion-md-close is-right is-borderless has-background-white" (click)="toggleEditable()"></button> -->
+					</div>
+				</div>
+
+				<div class="columns" [hidden]="list.editable">
+					<div class="column is-10">
+						<div id="listNamePlaceholder" class="menu">
+							<ul class="menu-list">
+								<li class="is-size-4">
+									<a (click)="toggleEditable()">{{list.name}}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="column">
+						<div class="has-text-right has-text-grey-light">
+							<i #fav class="icon is-action-icon is-size-4"
+								[ngClass]="{'ion-md-heart has-text-danger': list.isMain, 'ion-md-heart-empty has-text-grey-lighter': !list.isMain}"
+								(mouseover)="onFavOver(fav)" 
+								(mouseout)="onFavOut(fav)"
+								(click)="toggleIsMain(fav)">
+							</i>
+							<!-- <span class="has-text-weight-medium" style="vertical-align: text-bottom;">Default list</span>
+							<div class="is-clipped">
+							</div>
+							 -->
+						</div>				
+					</div>
+				</div>
+
+
+				<!-- <div class="content has-background-white-bis" style="margin-left: -2rem; margin-right: -2rem; height: 50vh;">
+					<span>Lorem ipsum dolor sit amet consectetur.</span>
+				</div> -->
+
+				<!-- <div class="menu" style="margin-top: 2rem; margin-bottom: 3rem">
+					<div class="level">
+						<div class="level-left">
+							<p class="menu-label">Products</p>
+						</div>
+						<div class="level-right">
+							<b class="level-item">Price</b>
+							<b class="level-item">Qty.</b>
+						</div>
+					</div>
+
+					<ol class="menu-list" style="margin-left: 1.5rem">
+						<li>
+							<a class="level is-flex">
+								<div class="level-left">
+									<span class="level-item">Eggs</span>
+								</div>
+								<div class="level-right">
+									<span class="level-item">2,000</span>
+									<span class="level-item">2.00</span>
+								</div>
+							</a>
+						</li>
+						<li><a>Milk</a></li>
+					</ol>
+				</div> -->
+
+				<article class="media box has-background-white-bis" [hidden]="list.listProducts.length > 1 && list.listProducts[0].product.name.length">
+					<div class="media-left">
+						<i class="icon ion-md has-text-info is-size-3"></i>
+					</div>
+					<div class="media-content">
+						<h5 class="has-text-weight-normal">It seems your shopping list is empty.</h5>
+						<h6 class="has-text-grey has-text-weight-light is-marginless">
+							Write below to add in the list <br>
+							<span class="has-text-grey-light">(Eg. Eggs, milk, potatoes...)</span>
+						</h6>
+					</div>
+				</article>
+
+				<table class="table is-hoverable is-fullwidth" [hidden]="list.listProducts.length <= 1 || !list.listProducts[0].product.creationTimestamp">
+					<thead>
+						<tr>
+							<th class="is-borderless has-text-left is-thin-header" colspan="2">Products</th>
+							<th class="is-borderless has-text-left is-thin-header">Qty.</th>
+							<th class="is-borderless has-text-left is-thin-header">Price</th>
+						</tr>
+					</thead>
+
+					<tbody class="is-size-5">
+						<ng-template ngFor let-product [ngForOf]="list.listProducts" let-index="index">
+							<tr *ngIf="index < list.listProducts.length -1">
+								<td class="" width="5">
+									<i #productRadio 
+									   class="icon ion-ios-radio-button-off has-text-primary is-size-4" 
+									   (mouseover)="onProductItemOver(productRadio)" 
+									   (mouseout)="onProductItemOut(productRadio)"
+									   (click)="onProductItemClick(productRadio)">
+									</i>
+								</td>
+								<!-- <td class="is-borderless" width="5">1.</td> -->
+								<td class="">{{product.name | titlecase}}</td>
+								<td class="has-text-right" width="10">{{product.quantity}}</td>
+								<td class="has-text-right" width="10">
+									<ng-template [ngIf]="product.price > 0" [ngIfThen]="hasPrice" [ngIfElse]="noPrice"></ng-template>
+									<ng-template #hasPrice>{{product.price | currency:'CRC':'symbol-narrow'}}</ng-template>
+									<ng-template #noPrice>-</ng-template>
+								</td>
+							</tr>
+						</ng-template>
+					</tbody>
+				</table>
+
+				<!-- <div class="field" *ngFor="let products of list.listProducts; index as index">
+					<div class="control has-background-white is-radiusless">
+						<input class="input is-shadowless is-borderless" name="productName[index]" type="text" placeholder="Product name">
+					</div>
+				</div> 
+				<div class="field is-grouped is-borderless">
+					<div class="control">
+						<button class="button is-link is-success">Done!</button>
+					</div>
+				</div> -->
+
+				<div class="is-bottom" *ngIf="list.listProducts.length > 0">
+					<div class="field is-marginless">
+						<div class="control has-background-white is-radiusless is-flex">
+							<!-- <i class="icon is-action-icon ion-md-add is-size-4 has-text-link"></i> -->
+							<input name="productName" 
+								   class="input is-medium is-shadowless is-borderless" 
+								   placeholder="Write the name of a product" 
+								   [(ngModel)]="list.listProducts[list.listProducts.length - 1].product.name">
+						</div>
+					</div>
+					<typeahead class="is-absolute" 
+						style="width: 100%; margin-top: .5rem;" 
+						textField="name"
+						[items]="products | async | filter: 'name' : list.listProducts[list.listProducts.length - 1].product.name"
+						(selectedItem)="onTypeaheadItemSelected($event)">
+					</typeahead>
+				</div>
+				
+				<!--
+				<p class="is-bottom has-text-grey is-family-monospace is-size-7" [hidden]="messages.requiredListName.valid">
+					<b>&gt; {{messages.requiredListName.text}}</b>
+				</p>
+				-->
+
+				<button type="submit" hidden></button>
+			</form>
+		</div>
+		
+		<dump class="column is-6 is-offset-3" [value]="list"></dump>
+	</div>
+</section>
